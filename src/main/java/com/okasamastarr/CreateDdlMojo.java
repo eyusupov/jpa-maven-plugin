@@ -84,6 +84,12 @@ public class CreateDdlMojo
     private boolean format;
 
     /**
+     * Whether to export to database
+     */
+    @Parameter( defaultValue = "false", property = "script", required = true)
+    private boolean export;
+
+    /**
      * Whether to output the SQL to console
      */
     @Parameter( defaultValue = "false", property = "script", required = true)
@@ -134,7 +140,7 @@ public class CreateDdlMojo
                 .setOutputFile(outputFile)
                 .setFormat(format)
                 .setDelimiter(delimeter);
-            schemaExport.execute(script, true, drop, create);
+            schemaExport.execute(script, export, drop, create);
         } catch (Throwable ex) {
             throw new MojoExecutionException("Failed to create DDL schema", ex);
         } finally {
