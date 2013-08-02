@@ -40,40 +40,70 @@ import java.util.List;
 import java.util.Properties;
 
 /**
- * Goal which creates a DDL schema.
+ * Goal which creates a DDL schema from JPA configuration.
  *
  */
 @Mojo( name = "create-ddl", defaultPhase = LifecyclePhase.PROCESS_CLASSES)
 public class CreateDdlMojo
     extends AbstractMojo
 {
+    /**
+     * Path to the created schema file
+     */
     @Parameter( defaultValue = "${project.build.directory}/schema.sql", property = "outputFile", required = true )
     private String outputFile;
 
+    /**
+     * Comma-separated list of the optional files to added to the schema file
+     */
     @Parameter( property = "importFile" )
     private String importFile;
 
+    /**
+     * Path to file containing overriding hibernate properties
+     */
     @Parameter( property = "propFile" )
     private String propFile;
 
+    /**
+     * Delimeter to use for separating SQL statements
+     */
     @Parameter( property = "delimeter" )
     private String delimeter;
 
+    /**
+     * Persistence unit to process
+     */
     @Parameter( property = "persistenceUnit", required = true )
     private String persistenceUnit;
 
+    /**
+     * Whether to format resulting SQL file
+     */
     @Parameter( defaultValue = "true", property = "format", required = true)
     private boolean format;
 
+    /**
+     * Whether to output the SQL to console
+     */
     @Parameter( defaultValue = "false", property = "script", required = true)
     private boolean script;
 
+    /**
+     * Whether to generate drop SQL statements
+     */
     @Parameter( defaultValue = "false", property = "drop", required = true)
     private boolean drop;
 
-    @Parameter( defaultValue = "true", property = "drop", required = true)
+    /**
+     * Whether to generate create SQL statements
+     */
+    @Parameter( defaultValue = "true", property = "create", required = true)
     private boolean create;
 
+    /**
+     * SQL dialect to use
+     */
     @Parameter( property = "dialect", required = false)
     private String dialect;
 
@@ -89,16 +119,16 @@ public class CreateDdlMojo
             Configuration cfg = createHibernateConfiguration(persistenceUnit);
 
             Properties props = new Properties();
+            if ( propFile != null ) {
+                props.load( new FileInputStream( propFile ) );
+            }
+            cfg.setProperties(props);
             if (dialect != null) {
                 props.setProperty("hibernate.dialect", dialect);
             }
             if (importFile != null) {
                 props.setProperty( AvailableSettings.HBM2DDL_IMPORT_FILES, importFile);
             }
-            if ( propFile != null ) {
-                props.load( new FileInputStream( propFile ) );
-            }
-            cfg.setProperties(props);
 
             SchemaExport schemaExport = new SchemaExport(cfg)
                 .setOutputFile(outputFile)
