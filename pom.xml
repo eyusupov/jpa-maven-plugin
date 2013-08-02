@@ -9,7 +9,7 @@
 
     <name>jpa-maven-plugin Maven Plugin</name>
 
-    <url>http://java.okasamastarr.com/maven/jpa-maven-plugin</url>
+    <url>http://okasamastarr.com/maven/jpa-maven-plugin</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
