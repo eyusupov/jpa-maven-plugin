@@ -122,4 +122,17 @@
             </build>
         </profile>
     </profiles>
+
+    <distributionManagement>
+        <repository>
+          <id>okasamaStarr - plugins release local</id>
+          <name>Okasamastarr repository - plugins local release</name>
+          <url>https://dev.okasamastarr.com/artifactory/plugins-release-local</url>
+        </repository>
+        <snapshotRepository>
+          <id>okasamaStarr - plugins snapshot local</id>
+          <name>Okasamastarr repository - plugins local snapshot</name>
+          <url>https://dev.okasamastarr.com/artifactory/plugins-snapshot-local</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
