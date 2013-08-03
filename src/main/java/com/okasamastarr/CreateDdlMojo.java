@@ -50,67 +50,67 @@ public class CreateDdlMojo
     /**
      * Path to the created schema file
      */
-    @Parameter( defaultValue = "${project.build.directory}/schema.sql", property = "outputFile", required = true )
+    @Parameter( defaultValue = "${project.build.directory}/schema.sql", property = "jpa.outputFile", required = true )
     private String outputFile;
 
     /**
      * Comma-separated list of the optional files to added to the schema file
      */
-    @Parameter( property = "importFile" )
+    @Parameter( property = "jpa.importFile" )
     private String importFile;
 
     /**
      * Path to file containing overriding hibernate properties
      */
-    @Parameter( property = "propFile" )
+    @Parameter( property = "jpa.propFile" )
     private String propFile;
 
     /**
      * Delimeter to use for separating SQL statements
      */
-    @Parameter( defaultValue = ";", property = "delimeter" )
+    @Parameter( defaultValue = ";", property = "jpa.delimeter" )
     private String delimeter;
 
     /**
      * Persistence unit to process
      */
-    @Parameter( property = "persistenceUnit", required = true )
+    @Parameter( property = "jpa.persistenceUnit", required = true )
     private String persistenceUnit;
 
     /**
      * Whether to format resulting SQL file
      */
-    @Parameter( defaultValue = "true", property = "format", required = true)
+    @Parameter( defaultValue = "true", property = "jpa.format", required = true)
     private boolean format;
 
     /**
      * Whether to export to database
      */
-    @Parameter( defaultValue = "false", property = "script", required = true)
+    @Parameter( defaultValue = "false", property = "jpa.script", required = true)
     private boolean export;
 
     /**
      * Whether to output the SQL to console
      */
-    @Parameter( defaultValue = "false", property = "script", required = true)
+    @Parameter( defaultValue = "false", property = "jpa.script", required = true)
     private boolean script;
 
     /**
      * Whether to generate drop SQL statements
      */
-    @Parameter( defaultValue = "false", property = "drop", required = true)
+    @Parameter( defaultValue = "false", property = "jpa.drop", required = true)
     private boolean drop;
 
     /**
      * Whether to generate create SQL statements
      */
-    @Parameter( defaultValue = "true", property = "create", required = true)
+    @Parameter( defaultValue = "true", property = "jpa.create", required = true)
     private boolean create;
 
     /**
      * SQL dialect to use
      */
-    @Parameter( property = "dialect", required = false)
+    @Parameter( property = "jpa.dialect", required = false)
     private String dialect;
 
     @Parameter( defaultValue = "${project}", readonly = true)
