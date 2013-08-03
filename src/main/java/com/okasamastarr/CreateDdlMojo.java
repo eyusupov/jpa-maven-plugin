@@ -68,7 +68,7 @@ public class CreateDdlMojo
     /**
      * Delimeter to use for separating SQL statements
      */
-    @Parameter( property = "delimeter" )
+    @Parameter( defaultValue = ";", property = "delimeter" )
     private String delimeter;
 
     /**
