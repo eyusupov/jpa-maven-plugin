@@ -86,7 +86,7 @@ public class CreateDdlMojo
     /**
      * Whether to export to database
      */
-    @Parameter( defaultValue = "false", property = "jpa.script", required = true)
+    @Parameter( defaultValue = "false", property = "jpa.export", required = true)
     private boolean export;
 
     /**
